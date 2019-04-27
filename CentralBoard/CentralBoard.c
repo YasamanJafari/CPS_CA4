@@ -22,6 +22,7 @@ Data Stack size         : 512
 *******************************************************/
 
 #include <mega32.h>
+#include <util/delay.h>
 #define WAIT_FOR_INTERRUPT 0x00
 #define INTERRUPT_RECEIVED 0x01
 #define WAIT_FOR_ADDRESS 0x02
@@ -168,8 +169,8 @@ while (1)
     // Place your code here
     //TODO: PINB.0 and PINB.1 address should checked.
         if(state == WAIT_FOR_ADDRESS)
-        {
-            //delay
+        { 
+            _delay_ms(1);
             deviceAddress =  (1 << PINB.1) + PINB.0;
             state = GET_DATA;
         }
