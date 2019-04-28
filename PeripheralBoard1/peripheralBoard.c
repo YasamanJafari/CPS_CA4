@@ -27,7 +27,7 @@ Data Stack size         : 512
 #define CHECK_TEMP 1
 #define RAISE_INTERRUPT 2
 #define WAIT_FOR_ACK 3
-#define ADDRESS_0 0
+#define ADDRESS_0 1
 #define ADDRESS_1 0
 #define TEMP_THRESHOLD 80
 // Declare your global variables here

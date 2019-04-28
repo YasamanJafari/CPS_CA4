@@ -27,7 +27,7 @@ Active0=0
 EditorPanel0=0
 PageIndex0=0
 EditorPanel1=0
-TimeStamp1=1318885379
+TimeStamp1=1318885568
 PageIndex1=1
 [CompilerDebug]
 Chip=ATmega32
@@ -312,7 +312,7 @@ ProgrammingCounter=0
 RunUserProg=0
 [HeadersList]
 Files=1
-F1=\\Mac\Home\Desktop\Term6\CPS\A4\CPS_CA4\PeripheralBoardCode\peripheralBoard.c
+F1=\\Mac\Home\Desktop\Term6\CPS\A4\CPS_CA4\PeripheralBoard0\peripheralBoard.c
 [BuildInfoCompiler]
 L1=Build configuration: Debug
 L2=Chip: ATmega32
@@ -331,7 +331,7 @@ L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
 L17=Build: 1
-L18=9362 line(s) compiled
+L18=9380 line(s) compiled
 L19=No errors
 L20=No warnings
 L21=
@@ -364,12 +364,12 @@ Row=0
 Column=0
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1318885507
+TimeStamp=1318885624
 [BookmarksFoldedCode]
 Files=1
 F1=peripheralBoard.c
 [Bookmarks1]
-TimeStamp=1318885379
+TimeStamp=1318885568
 Row=0
 Column=0
 ScrollPosX=0
