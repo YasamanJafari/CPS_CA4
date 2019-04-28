@@ -34,6 +34,8 @@ interrupt [EXT_INT1] void ext_int1_isr(void)
 void init()
 {
     PORTD.0 = 0;
+    PORTB.2 = 0;
+    PORTB.3 = 0;
     state = WAIT_FOR_INTERRUPT;
     deviceAddress = 0x00;
     muxSelect = 0x00;

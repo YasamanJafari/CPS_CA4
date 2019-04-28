@@ -50,7 +50,17 @@ while ((ADCSRA & (1<<ADIF))==0);
 ADCSRA|=(1<<ADIF);
 return ADCH;
 }
-
+void init()
+{
+    state = CHECK_TEMP;
+    temprature = 0;
+    PORTC = 0;
+    PORTB.0 = 0;
+    PORTB.1 = 0;
+    PORTA.2 = 0;
+    PORTA.0 = 0;
+    PORTD.0 = 0;
+}
 // External Interrupt 0 service routine
 interrupt [EXT_INT0] void ext_int0_isr(void)
 {
@@ -71,13 +81,15 @@ interrupt [EXT_INT0] void ext_int0_isr(void)
         PORTB.1 = ADDRESS_1;
         //raise interrupt indicating my work is finished
         PORTD.0 = 1;
+        state = CHECK_TEMP;
+        init();
     }
     else
     {
         //transfer interrupt in daisy chain
         PORTA.2 = 1;
     }
-    state = CHECK_TEMP;
+    
 }
 
 // Standard Input/Output functions
@@ -89,20 +101,24 @@ interrupt [TIM0_OVF] void timer0_ovf_isr(void)
     // Reinitialize Timer 0 value
     TCNT0=0xD8;
     // Place your code here
-    temprature = read_adc(1);
-    printf("%d", temprature);
-    if(temprature > TEMP_THRESHOLD)
+    if(state == CHECK_TEMP)
     {
-        state = RAISE_INTERRUPT;
+        temprature = read_adc(1);
+        printf("%d", temprature);
+        if(temprature > TEMP_THRESHOLD)
+        {
+            state = RAISE_INTERRUPT;
+        }
     }
 
 }
 
 
+
 void main(void)
 {
 // Declare your local variables here
-
+init();
 // Input/Output Ports initialization
 // Port A initialization
 // Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=Out Bit1=In Bit0=Out 
@@ -224,7 +240,7 @@ TWCR=(0<<TWEA) | (0<<TWSTA) | (0<<TWSTO) | (0<<TWEN) | (0<<TWIE);
 
 // Global enable interrupts
 #asm("sei")
-state =CHECK_TEMP;
+
 while (1)
     {
     // Place your code here
@@ -233,8 +249,6 @@ while (1)
     case RAISE_INTERRUPT:
         PORTA.0 = 1;
         state = WAIT_FOR_ACK;
-        break;
-        case WAIT_FOR_ACK:
         break;
     }
     }

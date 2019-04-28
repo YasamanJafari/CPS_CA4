@@ -98,42 +98,50 @@
 ;PCODE: $00000020 VOL: 0
 ; 0000 0034 }
 ;PCODE: $00000021 VOL: 0
-;
-;// External Interrupt 0 service routine
-;interrupt [EXT_INT0] void ext_int0_isr(void)
-; 0000 0038 {
+;void init()
+; 0000 0036 {
 ;PCODE: $00000022 VOL: 0
 ;PCODE: $00000023 VOL: 0
-; 0000 0039 // Place your code here
-; 0000 003A     if(state == WAIT_FOR_ACK)
+; 0000 0037     state = CHECK_TEMP;
 ;PCODE: $00000024 VOL: 0
 ;PCODE: $00000025 VOL: 0
+; 0000 0038     temprature = 0;
 ;PCODE: $00000026 VOL: 0
-; 0000 003B     {
-; 0000 003C         //put temprature on pins
-; 0000 003D         PORTC.0 = temprature & 0x000000001;
+; 0000 0039     PORTC = 0;
 ;PCODE: $00000027 VOL: 0
 ;PCODE: $00000028 VOL: 0
+; 0000 003A     PORTB.0 = 0;
 ;PCODE: $00000029 VOL: 0
 ;PCODE: $0000002A VOL: 0
+; 0000 003B     PORTB.1 = 0;
 ;PCODE: $0000002B VOL: 0
 ;PCODE: $0000002C VOL: 0
+; 0000 003C     PORTA.2 = 0;
 ;PCODE: $0000002D VOL: 0
 ;PCODE: $0000002E VOL: 0
+; 0000 003D     PORTA.0 = 0;
 ;PCODE: $0000002F VOL: 0
 ;PCODE: $00000030 VOL: 0
-; 0000 003E         PORTC.1 = temprature & 0x000000010;
+; 0000 003E     PORTD.0 = 0;
 ;PCODE: $00000031 VOL: 0
 ;PCODE: $00000032 VOL: 0
+; 0000 003F }
 ;PCODE: $00000033 VOL: 0
 ;PCODE: $00000034 VOL: 0
+;// External Interrupt 0 service routine
+;interrupt [EXT_INT0] void ext_int0_isr(void)
+; 0000 0042 {
 ;PCODE: $00000035 VOL: 0
 ;PCODE: $00000036 VOL: 0
+; 0000 0043 // Place your code here
+; 0000 0044     if(state == WAIT_FOR_ACK)
 ;PCODE: $00000037 VOL: 0
 ;PCODE: $00000038 VOL: 0
 ;PCODE: $00000039 VOL: 0
+; 0000 0045     {
+; 0000 0046         //put temprature on pins
+; 0000 0047         PORTC.0 = temprature & 0x000000001;
 ;PCODE: $0000003A VOL: 0
-; 0000 003F         PORTC.2 = temprature & 0x000000100;
 ;PCODE: $0000003B VOL: 0
 ;PCODE: $0000003C VOL: 0
 ;PCODE: $0000003D VOL: 0
@@ -143,8 +151,8 @@
 ;PCODE: $00000041 VOL: 0
 ;PCODE: $00000042 VOL: 0
 ;PCODE: $00000043 VOL: 0
+; 0000 0048         PORTC.1 = temprature & 0x000000010;
 ;PCODE: $00000044 VOL: 0
-; 0000 0040         PORTC.3 = temprature & 0x000001000;
 ;PCODE: $00000045 VOL: 0
 ;PCODE: $00000046 VOL: 0
 ;PCODE: $00000047 VOL: 0
@@ -154,8 +162,8 @@
 ;PCODE: $0000004B VOL: 0
 ;PCODE: $0000004C VOL: 0
 ;PCODE: $0000004D VOL: 0
+; 0000 0049         PORTC.2 = temprature & 0x000000100;
 ;PCODE: $0000004E VOL: 0
-; 0000 0041         PORTC.4 = temprature & 0x000010000;
 ;PCODE: $0000004F VOL: 0
 ;PCODE: $00000050 VOL: 0
 ;PCODE: $00000051 VOL: 0
@@ -165,8 +173,8 @@
 ;PCODE: $00000055 VOL: 0
 ;PCODE: $00000056 VOL: 0
 ;PCODE: $00000057 VOL: 0
+; 0000 004A         PORTC.3 = temprature & 0x000001000;
 ;PCODE: $00000058 VOL: 0
-; 0000 0042         PORTC.5 = temprature & 0x000100000;
 ;PCODE: $00000059 VOL: 0
 ;PCODE: $0000005A VOL: 0
 ;PCODE: $0000005B VOL: 0
@@ -176,8 +184,8 @@
 ;PCODE: $0000005F VOL: 0
 ;PCODE: $00000060 VOL: 0
 ;PCODE: $00000061 VOL: 0
+; 0000 004B         PORTC.4 = temprature & 0x000010000;
 ;PCODE: $00000062 VOL: 0
-; 0000 0043         PORTC.6 = temprature & 0x001000000;
 ;PCODE: $00000063 VOL: 0
 ;PCODE: $00000064 VOL: 0
 ;PCODE: $00000065 VOL: 0
@@ -187,8 +195,8 @@
 ;PCODE: $00000069 VOL: 0
 ;PCODE: $0000006A VOL: 0
 ;PCODE: $0000006B VOL: 0
+; 0000 004C         PORTC.5 = temprature & 0x000100000;
 ;PCODE: $0000006C VOL: 0
-; 0000 0044         PORTC.7 = temprature & 0x010000000;
 ;PCODE: $0000006D VOL: 0
 ;PCODE: $0000006E VOL: 0
 ;PCODE: $0000006F VOL: 0
@@ -198,328 +206,353 @@
 ;PCODE: $00000073 VOL: 0
 ;PCODE: $00000074 VOL: 0
 ;PCODE: $00000075 VOL: 0
+; 0000 004D         PORTC.6 = temprature & 0x001000000;
 ;PCODE: $00000076 VOL: 0
-; 0000 0045         //put address
-; 0000 0046         PORTB.0 = ADDRESS_0;
 ;PCODE: $00000077 VOL: 0
 ;PCODE: $00000078 VOL: 0
-; 0000 0047         PORTB.1 = ADDRESS_1;
 ;PCODE: $00000079 VOL: 0
 ;PCODE: $0000007A VOL: 0
-; 0000 0048         //raise interrupt indicating my work is finished
-; 0000 0049         PORTD.0 = 1;
 ;PCODE: $0000007B VOL: 0
 ;PCODE: $0000007C VOL: 0
-; 0000 004A     }
-; 0000 004B     else
 ;PCODE: $0000007D VOL: 0
 ;PCODE: $0000007E VOL: 0
-; 0000 004C     {
-; 0000 004D         //transfer interrupt in daisy chain
-; 0000 004E         PORTA.2 = 1;
 ;PCODE: $0000007F VOL: 0
+; 0000 004E         PORTC.7 = temprature & 0x010000000;
 ;PCODE: $00000080 VOL: 0
-; 0000 004F     }
 ;PCODE: $00000081 VOL: 0
-; 0000 0050     state = CHECK_TEMP;
 ;PCODE: $00000082 VOL: 0
 ;PCODE: $00000083 VOL: 0
-; 0000 0051 }
 ;PCODE: $00000084 VOL: 0
 ;PCODE: $00000085 VOL: 0
 ;PCODE: $00000086 VOL: 0
+;PCODE: $00000087 VOL: 0
+;PCODE: $00000088 VOL: 0
+;PCODE: $00000089 VOL: 0
+; 0000 004F         //put address
+; 0000 0050         PORTB.0 = ADDRESS_0;
+;PCODE: $0000008A VOL: 0
+;PCODE: $0000008B VOL: 0
+; 0000 0051         PORTB.1 = ADDRESS_1;
+;PCODE: $0000008C VOL: 0
+;PCODE: $0000008D VOL: 0
+; 0000 0052         //raise interrupt indicating my work is finished
+; 0000 0053         PORTD.0 = 1;
+;PCODE: $0000008E VOL: 0
+;PCODE: $0000008F VOL: 0
+; 0000 0054         state = CHECK_TEMP;
+;PCODE: $00000090 VOL: 0
+;PCODE: $00000091 VOL: 0
+; 0000 0055         init();
+;PCODE: $00000092 VOL: 0
+; 0000 0056     }
+; 0000 0057     else
+;PCODE: $00000093 VOL: 0
+;PCODE: $00000094 VOL: 0
+; 0000 0058     {
+; 0000 0059         //transfer interrupt in daisy chain
+; 0000 005A         PORTA.2 = 1;
+;PCODE: $00000095 VOL: 0
+;PCODE: $00000096 VOL: 0
+; 0000 005B     }
+;PCODE: $00000097 VOL: 0
+; 0000 005C 
+; 0000 005D }
+;PCODE: $00000098 VOL: 0
+;PCODE: $00000099 VOL: 0
+;PCODE: $0000009A VOL: 0
 ;
 ;// Standard Input/Output functions
 ;#include <stdio.h>
 ;
 ;// Timer 0 overflow interrupt service routine
 ;interrupt [TIM0_OVF] void timer0_ovf_isr(void)
-; 0000 0058 {
-;PCODE: $00000087 VOL: 0
-;PCODE: $00000088 VOL: 0
-; 0000 0059     // Reinitialize Timer 0 value
-; 0000 005A     TCNT0=0xD8;
-;PCODE: $00000089 VOL: 0
-;PCODE: $0000008A VOL: 0
-; 0000 005B     // Place your code here
-; 0000 005C     temprature = read_adc(1);
-;PCODE: $0000008B VOL: 0
-;PCODE: $0000008C VOL: 0
-;PCODE: $0000008D VOL: 0
-;PCODE: $0000008E VOL: 0
-; 0000 005D     printf("%d", temprature);
-;PCODE: $0000008F VOL: 0
-;PCODE: $00000090 VOL: 0
-;PCODE: $00000091 VOL: 0
-;PCODE: $00000092 VOL: 0
-;PCODE: $00000093 VOL: 0
-;PCODE: $00000094 VOL: 0
-;PCODE: $00000095 VOL: 0
-;PCODE: $00000096 VOL: 0
-;PCODE: $00000097 VOL: 0
-;PCODE: $00000098 VOL: 0
-; 0000 005E     if(temprature > TEMP_THRESHOLD)
-;PCODE: $00000099 VOL: 0
-;PCODE: $0000009A VOL: 0
+; 0000 0064 {
 ;PCODE: $0000009B VOL: 0
-; 0000 005F     {
-; 0000 0060         state = RAISE_INTERRUPT;
 ;PCODE: $0000009C VOL: 0
+; 0000 0065     // Reinitialize Timer 0 value
+; 0000 0066     TCNT0=0xD8;
 ;PCODE: $0000009D VOL: 0
-; 0000 0061     }
-; 0000 0062 
-; 0000 0063 }
 ;PCODE: $0000009E VOL: 0
+; 0000 0067     // Place your code here
+; 0000 0068     if(state == CHECK_TEMP)
 ;PCODE: $0000009F VOL: 0
 ;PCODE: $000000A0 VOL: 0
 ;PCODE: $000000A1 VOL: 0
+; 0000 0069     {
+; 0000 006A         temprature = read_adc(1);
+;PCODE: $000000A2 VOL: 0
+;PCODE: $000000A3 VOL: 0
+;PCODE: $000000A4 VOL: 0
+;PCODE: $000000A5 VOL: 0
+; 0000 006B         printf("%d", temprature);
+;PCODE: $000000A6 VOL: 0
+;PCODE: $000000A7 VOL: 0
+;PCODE: $000000A8 VOL: 0
+;PCODE: $000000A9 VOL: 0
+;PCODE: $000000AA VOL: 0
+;PCODE: $000000AB VOL: 0
+;PCODE: $000000AC VOL: 0
+;PCODE: $000000AD VOL: 0
+;PCODE: $000000AE VOL: 0
+;PCODE: $000000AF VOL: 0
+; 0000 006C         if(temprature > TEMP_THRESHOLD)
+;PCODE: $000000B0 VOL: 0
+;PCODE: $000000B1 VOL: 0
+;PCODE: $000000B2 VOL: 0
+; 0000 006D         {
+; 0000 006E             state = RAISE_INTERRUPT;
+;PCODE: $000000B3 VOL: 0
+;PCODE: $000000B4 VOL: 0
+; 0000 006F         }
+; 0000 0070     }
+;PCODE: $000000B5 VOL: 0
+; 0000 0071 
+; 0000 0072 }
+;PCODE: $000000B6 VOL: 0
+;PCODE: $000000B7 VOL: 0
+;PCODE: $000000B8 VOL: 0
+;PCODE: $000000B9 VOL: 0
+;
 ;
 ;
 ;void main(void)
-; 0000 0067 {
-;PCODE: $000000A2 VOL: 0
-; 0000 0068 // Declare your local variables here
-; 0000 0069 
-; 0000 006A // Input/Output Ports initialization
-; 0000 006B // Port A initialization
-; 0000 006C // Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=Out Bit1=In Bit0=Out
-; 0000 006D DDRA=(0<<DDA7) | (0<<DDA6) | (0<<DDA5) | (0<<DDA4) | (0<<DDA3) | (1<<DDA2) | (0<<DDA1) | (1<<DDA0);
-;PCODE: $000000A3 VOL: 0
-;PCODE: $000000A4 VOL: 0
-; 0000 006E // State: Bit7=T Bit6=T Bit5=T Bit4=T Bit3=T Bit2=0 Bit1=T Bit0=0
-; 0000 006F PORTA=(0<<PORTA7) | (0<<PORTA6) | (0<<PORTA5) | (0<<PORTA4) | (0<<PORTA3) | (0<<PORTA2) | (0<<PORTA1) | (0<<PORTA0);
-;PCODE: $000000A5 VOL: 0
-;PCODE: $000000A6 VOL: 0
-; 0000 0070 
-; 0000 0071 // Port B initialization
-; 0000 0072 // Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=Out Bit0=Out
-; 0000 0073 DDRB=(0<<DDB7) | (0<<DDB6) | (0<<DDB5) | (0<<DDB4) | (0<<DDB3) | (0<<DDB2) | (1<<DDB1) | (1<<DDB0);
-;PCODE: $000000A7 VOL: 0
-;PCODE: $000000A8 VOL: 0
-; 0000 0074 // State: Bit7=T Bit6=T Bit5=T Bit4=T Bit3=T Bit2=T Bit1=0 Bit0=0
-; 0000 0075 PORTB=(0<<PORTB7) | (0<<PORTB6) | (0<<PORTB5) | (0<<PORTB4) | (0<<PORTB3) | (0<<PORTB2) | (0<<PORTB1) | (0<<PORTB0);
-;PCODE: $000000A9 VOL: 0
-;PCODE: $000000AA VOL: 0
-; 0000 0076 
-; 0000 0077 // Port C initialization
-; 0000 0078 // Function: Bit7=Out Bit6=Out Bit5=Out Bit4=Out Bit3=Out Bit2=Out Bit1=Out Bit0=Out
-; 0000 0079 DDRC=(1<<DDC7) | (1<<DDC6) | (1<<DDC5) | (1<<DDC4) | (1<<DDC3) | (1<<DDC2) | (1<<DDC1) | (1<<DDC0);
-;PCODE: $000000AB VOL: 0
-;PCODE: $000000AC VOL: 0
-; 0000 007A // State: Bit7=0 Bit6=0 Bit5=0 Bit4=0 Bit3=0 Bit2=0 Bit1=0 Bit0=0
-; 0000 007B PORTC=(0<<PORTC7) | (0<<PORTC6) | (0<<PORTC5) | (0<<PORTC4) | (0<<PORTC3) | (0<<PORTC2) | (0<<PORTC1) | (0<<PORTC0);
-;PCODE: $000000AD VOL: 0
-;PCODE: $000000AE VOL: 0
-; 0000 007C 
-; 0000 007D // Port D initialization
-; 0000 007E // Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=Out
-; 0000 007F DDRD=(0<<DDD7) | (0<<DDD6) | (0<<DDD5) | (0<<DDD4) | (0<<DDD3) | (0<<DDD2) | (0<<DDD1) | (1<<DDD0);
-;PCODE: $000000AF VOL: 0
-;PCODE: $000000B0 VOL: 0
-; 0000 0080 // State: Bit7=T Bit6=T Bit5=T Bit4=T Bit3=T Bit2=T Bit1=T Bit0=0
-; 0000 0081 PORTD=(0<<PORTD7) | (0<<PORTD6) | (0<<PORTD5) | (0<<PORTD4) | (0<<PORTD3) | (0<<PORTD2) | (0<<PORTD1) | (0<<PORTD0);
-;PCODE: $000000B1 VOL: 0
-;PCODE: $000000B2 VOL: 0
-; 0000 0082 
-; 0000 0083 // Timer/Counter 0 initialization
-; 0000 0084 // Clock source: System Clock
-; 0000 0085 // Clock value: 8000.000 kHz
-; 0000 0086 // Mode: Normal top=0xFF
-; 0000 0087 // OC0 output: Disconnected
-; 0000 0088 // Timer Period: 5 us
-; 0000 0089 TCCR0=(0<<WGM00) | (0<<COM01) | (0<<COM00) | (0<<WGM01) | (0<<CS02) | (0<<CS01) | (1<<CS00);
-;PCODE: $000000B3 VOL: 0
-;PCODE: $000000B4 VOL: 0
-; 0000 008A TCNT0=0xD8;
-;PCODE: $000000B5 VOL: 0
-;PCODE: $000000B6 VOL: 0
-; 0000 008B OCR0=0x00;
-;PCODE: $000000B7 VOL: 0
-;PCODE: $000000B8 VOL: 0
-; 0000 008C 
-; 0000 008D // Timer/Counter 1 initialization
-; 0000 008E // Clock source: System Clock
-; 0000 008F // Clock value: Timer1 Stopped
-; 0000 0090 // Mode: Normal top=0xFFFF
-; 0000 0091 // OC1A output: Disconnected
-; 0000 0092 // OC1B output: Disconnected
-; 0000 0093 // Noise Canceler: Off
-; 0000 0094 // Input Capture on Falling Edge
-; 0000 0095 // Timer1 Overflow Interrupt: Off
-; 0000 0096 // Input Capture Interrupt: Off
-; 0000 0097 // Compare A Match Interrupt: Off
-; 0000 0098 // Compare B Match Interrupt: Off
-; 0000 0099 TCCR1A=(0<<COM1A1) | (0<<COM1A0) | (0<<COM1B1) | (0<<COM1B0) | (0<<WGM11) | (0<<WGM10);
-;PCODE: $000000B9 VOL: 0
+; 0000 0077 {
 ;PCODE: $000000BA VOL: 0
-; 0000 009A TCCR1B=(0<<ICNC1) | (0<<ICES1) | (0<<WGM13) | (0<<WGM12) | (0<<CS12) | (0<<CS11) | (0<<CS10);
+; 0000 0078 // Declare your local variables here
+; 0000 0079 init();
 ;PCODE: $000000BB VOL: 0
+; 0000 007A // Input/Output Ports initialization
+; 0000 007B // Port A initialization
+; 0000 007C // Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=Out Bit1=In Bit0=Out
+; 0000 007D DDRA=(0<<DDA7) | (0<<DDA6) | (0<<DDA5) | (0<<DDA4) | (0<<DDA3) | (1<<DDA2) | (0<<DDA1) | (1<<DDA0);
 ;PCODE: $000000BC VOL: 0
-; 0000 009B TCNT1H=0x00;
 ;PCODE: $000000BD VOL: 0
+; 0000 007E // State: Bit7=T Bit6=T Bit5=T Bit4=T Bit3=T Bit2=0 Bit1=T Bit0=0
+; 0000 007F PORTA=(0<<PORTA7) | (0<<PORTA6) | (0<<PORTA5) | (0<<PORTA4) | (0<<PORTA3) | (0<<PORTA2) | (0<<PORTA1) | (0<<PORTA0);
 ;PCODE: $000000BE VOL: 0
-; 0000 009C TCNT1L=0x00;
 ;PCODE: $000000BF VOL: 0
+; 0000 0080 
+; 0000 0081 // Port B initialization
+; 0000 0082 // Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=Out Bit0=Out
+; 0000 0083 DDRB=(0<<DDB7) | (0<<DDB6) | (0<<DDB5) | (0<<DDB4) | (0<<DDB3) | (0<<DDB2) | (1<<DDB1) | (1<<DDB0);
 ;PCODE: $000000C0 VOL: 0
-; 0000 009D ICR1H=0x00;
 ;PCODE: $000000C1 VOL: 0
+; 0000 0084 // State: Bit7=T Bit6=T Bit5=T Bit4=T Bit3=T Bit2=T Bit1=0 Bit0=0
+; 0000 0085 PORTB=(0<<PORTB7) | (0<<PORTB6) | (0<<PORTB5) | (0<<PORTB4) | (0<<PORTB3) | (0<<PORTB2) | (0<<PORTB1) | (0<<PORTB0);
 ;PCODE: $000000C2 VOL: 0
-; 0000 009E ICR1L=0x00;
 ;PCODE: $000000C3 VOL: 0
+; 0000 0086 
+; 0000 0087 // Port C initialization
+; 0000 0088 // Function: Bit7=Out Bit6=Out Bit5=Out Bit4=Out Bit3=Out Bit2=Out Bit1=Out Bit0=Out
+; 0000 0089 DDRC=(1<<DDC7) | (1<<DDC6) | (1<<DDC5) | (1<<DDC4) | (1<<DDC3) | (1<<DDC2) | (1<<DDC1) | (1<<DDC0);
 ;PCODE: $000000C4 VOL: 0
-; 0000 009F OCR1AH=0x00;
 ;PCODE: $000000C5 VOL: 0
+; 0000 008A // State: Bit7=0 Bit6=0 Bit5=0 Bit4=0 Bit3=0 Bit2=0 Bit1=0 Bit0=0
+; 0000 008B PORTC=(0<<PORTC7) | (0<<PORTC6) | (0<<PORTC5) | (0<<PORTC4) | (0<<PORTC3) | (0<<PORTC2) | (0<<PORTC1) | (0<<PORTC0);
 ;PCODE: $000000C6 VOL: 0
-; 0000 00A0 OCR1AL=0x00;
 ;PCODE: $000000C7 VOL: 0
+; 0000 008C 
+; 0000 008D // Port D initialization
+; 0000 008E // Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=Out
+; 0000 008F DDRD=(0<<DDD7) | (0<<DDD6) | (0<<DDD5) | (0<<DDD4) | (0<<DDD3) | (0<<DDD2) | (0<<DDD1) | (1<<DDD0);
 ;PCODE: $000000C8 VOL: 0
-; 0000 00A1 OCR1BH=0x00;
 ;PCODE: $000000C9 VOL: 0
+; 0000 0090 // State: Bit7=T Bit6=T Bit5=T Bit4=T Bit3=T Bit2=T Bit1=T Bit0=0
+; 0000 0091 PORTD=(0<<PORTD7) | (0<<PORTD6) | (0<<PORTD5) | (0<<PORTD4) | (0<<PORTD3) | (0<<PORTD2) | (0<<PORTD1) | (0<<PORTD0);
 ;PCODE: $000000CA VOL: 0
-; 0000 00A2 OCR1BL=0x00;
 ;PCODE: $000000CB VOL: 0
+; 0000 0092 
+; 0000 0093 // Timer/Counter 0 initialization
+; 0000 0094 // Clock source: System Clock
+; 0000 0095 // Clock value: 8000.000 kHz
+; 0000 0096 // Mode: Normal top=0xFF
+; 0000 0097 // OC0 output: Disconnected
+; 0000 0098 // Timer Period: 5 us
+; 0000 0099 TCCR0=(0<<WGM00) | (0<<COM01) | (0<<COM00) | (0<<WGM01) | (0<<CS02) | (0<<CS01) | (1<<CS00);
 ;PCODE: $000000CC VOL: 0
-; 0000 00A3 
-; 0000 00A4 // Timer/Counter 2 initialization
-; 0000 00A5 // Clock source: System Clock
-; 0000 00A6 // Clock value: Timer2 Stopped
-; 0000 00A7 // Mode: Normal top=0xFF
-; 0000 00A8 // OC2 output: Disconnected
-; 0000 00A9 ASSR=0<<AS2;
 ;PCODE: $000000CD VOL: 0
+; 0000 009A TCNT0=0xD8;
 ;PCODE: $000000CE VOL: 0
-; 0000 00AA TCCR2=(0<<PWM2) | (0<<COM21) | (0<<COM20) | (0<<CTC2) | (0<<CS22) | (0<<CS21) | (0<<CS20);
 ;PCODE: $000000CF VOL: 0
+; 0000 009B OCR0=0x00;
 ;PCODE: $000000D0 VOL: 0
-; 0000 00AB TCNT2=0x00;
 ;PCODE: $000000D1 VOL: 0
+; 0000 009C 
+; 0000 009D // Timer/Counter 1 initialization
+; 0000 009E // Clock source: System Clock
+; 0000 009F // Clock value: Timer1 Stopped
+; 0000 00A0 // Mode: Normal top=0xFFFF
+; 0000 00A1 // OC1A output: Disconnected
+; 0000 00A2 // OC1B output: Disconnected
+; 0000 00A3 // Noise Canceler: Off
+; 0000 00A4 // Input Capture on Falling Edge
+; 0000 00A5 // Timer1 Overflow Interrupt: Off
+; 0000 00A6 // Input Capture Interrupt: Off
+; 0000 00A7 // Compare A Match Interrupt: Off
+; 0000 00A8 // Compare B Match Interrupt: Off
+; 0000 00A9 TCCR1A=(0<<COM1A1) | (0<<COM1A0) | (0<<COM1B1) | (0<<COM1B0) | (0<<WGM11) | (0<<WGM10);
 ;PCODE: $000000D2 VOL: 0
-; 0000 00AC OCR2=0x00;
 ;PCODE: $000000D3 VOL: 0
+; 0000 00AA TCCR1B=(0<<ICNC1) | (0<<ICES1) | (0<<WGM13) | (0<<WGM12) | (0<<CS12) | (0<<CS11) | (0<<CS10);
 ;PCODE: $000000D4 VOL: 0
-; 0000 00AD 
-; 0000 00AE // Timer(s)/Counter(s) Interrupt(s) initialization
-; 0000 00AF TIMSK=(0<<OCIE2) | (0<<TOIE2) | (0<<TICIE1) | (0<<OCIE1A) | (0<<OCIE1B) | (0<<TOIE1) | (0<<OCIE0) | (1<<TOIE0);
 ;PCODE: $000000D5 VOL: 0
+; 0000 00AB TCNT1H=0x00;
 ;PCODE: $000000D6 VOL: 0
-; 0000 00B0 
-; 0000 00B1 // External Interrupt(s) initialization
-; 0000 00B2 // INT0: On
-; 0000 00B3 // INT0 Mode: Rising Edge
-; 0000 00B4 // INT1: Off
-; 0000 00B5 // INT2: Off
-; 0000 00B6 GICR|=(0<<INT1) | (1<<INT0) | (0<<INT2);
 ;PCODE: $000000D7 VOL: 0
+; 0000 00AC TCNT1L=0x00;
 ;PCODE: $000000D8 VOL: 0
 ;PCODE: $000000D9 VOL: 0
-; 0000 00B7 MCUCR=(0<<ISC11) | (0<<ISC10) | (1<<ISC01) | (1<<ISC00);
+; 0000 00AD ICR1H=0x00;
 ;PCODE: $000000DA VOL: 0
 ;PCODE: $000000DB VOL: 0
-; 0000 00B8 MCUCSR=(0<<ISC2);
+; 0000 00AE ICR1L=0x00;
 ;PCODE: $000000DC VOL: 0
 ;PCODE: $000000DD VOL: 0
-; 0000 00B9 GIFR=(0<<INTF1) | (1<<INTF0) | (0<<INTF2);
+; 0000 00AF OCR1AH=0x00;
 ;PCODE: $000000DE VOL: 0
 ;PCODE: $000000DF VOL: 0
-; 0000 00BA 
-; 0000 00BB // USART initialization
-; 0000 00BC // Communication Parameters: 8 Data, 1 Stop, No Parity
-; 0000 00BD // USART Receiver: Off
-; 0000 00BE // USART Transmitter: On
-; 0000 00BF // USART Mode: Asynchronous
-; 0000 00C0 // USART Baud Rate: 9600
-; 0000 00C1 UCSRA=(0<<RXC) | (0<<TXC) | (0<<UDRE) | (0<<FE) | (0<<DOR) | (0<<UPE) | (0<<U2X) | (0<<MPCM);
+; 0000 00B0 OCR1AL=0x00;
 ;PCODE: $000000E0 VOL: 0
 ;PCODE: $000000E1 VOL: 0
-; 0000 00C2 UCSRB=(0<<RXCIE) | (0<<TXCIE) | (0<<UDRIE) | (0<<RXEN) | (1<<TXEN) | (0<<UCSZ2) | (0<<RXB8) | (0<<TXB8);
+; 0000 00B1 OCR1BH=0x00;
 ;PCODE: $000000E2 VOL: 0
 ;PCODE: $000000E3 VOL: 0
-; 0000 00C3 UCSRC=(1<<URSEL) | (0<<UMSEL) | (0<<UPM1) | (0<<UPM0) | (0<<USBS) | (1<<UCSZ1) | (1<<UCSZ0) | (0<<UCPOL);
+; 0000 00B2 OCR1BL=0x00;
 ;PCODE: $000000E4 VOL: 0
 ;PCODE: $000000E5 VOL: 0
-; 0000 00C4 UBRRH=0x00;
+; 0000 00B3 
+; 0000 00B4 // Timer/Counter 2 initialization
+; 0000 00B5 // Clock source: System Clock
+; 0000 00B6 // Clock value: Timer2 Stopped
+; 0000 00B7 // Mode: Normal top=0xFF
+; 0000 00B8 // OC2 output: Disconnected
+; 0000 00B9 ASSR=0<<AS2;
 ;PCODE: $000000E6 VOL: 0
 ;PCODE: $000000E7 VOL: 0
-; 0000 00C5 UBRRL=0x33;
+; 0000 00BA TCCR2=(0<<PWM2) | (0<<COM21) | (0<<COM20) | (0<<CTC2) | (0<<CS22) | (0<<CS21) | (0<<CS20);
 ;PCODE: $000000E8 VOL: 0
 ;PCODE: $000000E9 VOL: 0
-; 0000 00C6 
-; 0000 00C7 // Analog Comparator initialization
-; 0000 00C8 // Analog Comparator: Off
-; 0000 00C9 // The Analog Comparator's positive input is
-; 0000 00CA // connected to the AIN0 pin
-; 0000 00CB // The Analog Comparator's negative input is
-; 0000 00CC // connected to the AIN1 pin
-; 0000 00CD ACSR=(1<<ACD) | (0<<ACBG) | (0<<ACO) | (0<<ACI) | (0<<ACIE) | (0<<ACIC) | (0<<ACIS1) | (0<<ACIS0);
+; 0000 00BB TCNT2=0x00;
 ;PCODE: $000000EA VOL: 0
 ;PCODE: $000000EB VOL: 0
-; 0000 00CE 
-; 0000 00CF // ADC initialization
-; 0000 00D0 // ADC Clock frequency: 1000.000 kHz
-; 0000 00D1 // ADC Voltage Reference: AREF pin
-; 0000 00D2 // ADC Auto Trigger Source: Free Running
-; 0000 00D3 // Only the 8 most significant bits of
-; 0000 00D4 // the AD conversion result are used
-; 0000 00D5 ADMUX=ADC_VREF_TYPE;
+; 0000 00BC OCR2=0x00;
 ;PCODE: $000000EC VOL: 0
 ;PCODE: $000000ED VOL: 0
-; 0000 00D6 ADCSRA=(1<<ADEN) | (0<<ADSC) | (1<<ADATE) | (0<<ADIF) | (0<<ADIE) | (0<<ADPS2) | (1<<ADPS1) | (1<<ADPS0);
+; 0000 00BD 
+; 0000 00BE // Timer(s)/Counter(s) Interrupt(s) initialization
+; 0000 00BF TIMSK=(0<<OCIE2) | (0<<TOIE2) | (0<<TICIE1) | (0<<OCIE1A) | (0<<OCIE1B) | (0<<TOIE1) | (0<<OCIE0) | (1<<TOIE0);
 ;PCODE: $000000EE VOL: 0
 ;PCODE: $000000EF VOL: 0
-; 0000 00D7 SFIOR=(0<<ADTS2) | (0<<ADTS1) | (0<<ADTS0);
+; 0000 00C0 
+; 0000 00C1 // External Interrupt(s) initialization
+; 0000 00C2 // INT0: On
+; 0000 00C3 // INT0 Mode: Rising Edge
+; 0000 00C4 // INT1: Off
+; 0000 00C5 // INT2: Off
+; 0000 00C6 GICR|=(0<<INT1) | (1<<INT0) | (0<<INT2);
 ;PCODE: $000000F0 VOL: 0
 ;PCODE: $000000F1 VOL: 0
-; 0000 00D8 
-; 0000 00D9 // SPI initialization
-; 0000 00DA // SPI disabled
-; 0000 00DB SPCR=(0<<SPIE) | (0<<SPE) | (0<<DORD) | (0<<MSTR) | (0<<CPOL) | (0<<CPHA) | (0<<SPR1) | (0<<SPR0);
 ;PCODE: $000000F2 VOL: 0
+; 0000 00C7 MCUCR=(0<<ISC11) | (0<<ISC10) | (1<<ISC01) | (1<<ISC00);
 ;PCODE: $000000F3 VOL: 0
-; 0000 00DC 
-; 0000 00DD // TWI initialization
-; 0000 00DE // TWI disabled
-; 0000 00DF TWCR=(0<<TWEA) | (0<<TWSTA) | (0<<TWSTO) | (0<<TWEN) | (0<<TWIE);
 ;PCODE: $000000F4 VOL: 0
+; 0000 00C8 MCUCSR=(0<<ISC2);
 ;PCODE: $000000F5 VOL: 0
-; 0000 00E0 
-; 0000 00E1 // Global enable interrupts
-; 0000 00E2 #asm("sei")
 ;PCODE: $000000F6 VOL: 0
-	sei
+; 0000 00C9 GIFR=(0<<INTF1) | (1<<INTF0) | (0<<INTF2);
 ;PCODE: $000000F7 VOL: 0
-; 0000 00E3 state =CHECK_TEMP;
 ;PCODE: $000000F8 VOL: 0
+; 0000 00CA 
+; 0000 00CB // USART initialization
+; 0000 00CC // Communication Parameters: 8 Data, 1 Stop, No Parity
+; 0000 00CD // USART Receiver: Off
+; 0000 00CE // USART Transmitter: On
+; 0000 00CF // USART Mode: Asynchronous
+; 0000 00D0 // USART Baud Rate: 9600
+; 0000 00D1 UCSRA=(0<<RXC) | (0<<TXC) | (0<<UDRE) | (0<<FE) | (0<<DOR) | (0<<UPE) | (0<<U2X) | (0<<MPCM);
 ;PCODE: $000000F9 VOL: 0
-; 0000 00E4 while (1)
 ;PCODE: $000000FA VOL: 0
-; 0000 00E5     {
-; 0000 00E6     // Place your code here
-; 0000 00E7     switch(state)
+; 0000 00D2 UCSRB=(0<<RXCIE) | (0<<TXCIE) | (0<<UDRIE) | (0<<RXEN) | (1<<TXEN) | (0<<UCSZ2) | (0<<RXB8) | (0<<TXB8);
 ;PCODE: $000000FB VOL: 0
-; 0000 00E8     {
-; 0000 00E9     case RAISE_INTERRUPT:
 ;PCODE: $000000FC VOL: 0
+; 0000 00D3 UCSRC=(1<<URSEL) | (0<<UMSEL) | (0<<UPM1) | (0<<UPM0) | (0<<USBS) | (1<<UCSZ1) | (1<<UCSZ0) | (0<<UCPOL);
 ;PCODE: $000000FD VOL: 0
-; 0000 00EA         PORTA.0 = 1;
 ;PCODE: $000000FE VOL: 0
+; 0000 00D4 UBRRH=0x00;
 ;PCODE: $000000FF VOL: 0
-; 0000 00EB         state = WAIT_FOR_ACK;
 ;PCODE: $00000100 VOL: 0
+; 0000 00D5 UBRRL=0x33;
 ;PCODE: $00000101 VOL: 0
-; 0000 00EC         break;
 ;PCODE: $00000102 VOL: 0
-; 0000 00ED         case WAIT_FOR_ACK:
+; 0000 00D6 
+; 0000 00D7 // Analog Comparator initialization
+; 0000 00D8 // Analog Comparator: Off
+; 0000 00D9 // The Analog Comparator's positive input is
+; 0000 00DA // connected to the AIN0 pin
+; 0000 00DB // The Analog Comparator's negative input is
+; 0000 00DC // connected to the AIN1 pin
+; 0000 00DD ACSR=(1<<ACD) | (0<<ACBG) | (0<<ACO) | (0<<ACI) | (0<<ACIE) | (0<<ACIC) | (0<<ACIS1) | (0<<ACIS0);
 ;PCODE: $00000103 VOL: 0
 ;PCODE: $00000104 VOL: 0
+; 0000 00DE 
+; 0000 00DF // ADC initialization
+; 0000 00E0 // ADC Clock frequency: 1000.000 kHz
+; 0000 00E1 // ADC Voltage Reference: AREF pin
+; 0000 00E2 // ADC Auto Trigger Source: Free Running
+; 0000 00E3 // Only the 8 most significant bits of
+; 0000 00E4 // the AD conversion result are used
+; 0000 00E5 ADMUX=ADC_VREF_TYPE;
 ;PCODE: $00000105 VOL: 0
-; 0000 00EE         break;
 ;PCODE: $00000106 VOL: 0
-; 0000 00EF     }
+; 0000 00E6 ADCSRA=(1<<ADEN) | (0<<ADSC) | (1<<ADATE) | (0<<ADIF) | (0<<ADIE) | (0<<ADPS2) | (1<<ADPS1) | (1<<ADPS0);
 ;PCODE: $00000107 VOL: 0
-; 0000 00F0     }
 ;PCODE: $00000108 VOL: 0
+; 0000 00E7 SFIOR=(0<<ADTS2) | (0<<ADTS1) | (0<<ADTS0);
 ;PCODE: $00000109 VOL: 0
-; 0000 00F1 }
 ;PCODE: $0000010A VOL: 0
+; 0000 00E8 
+; 0000 00E9 // SPI initialization
+; 0000 00EA // SPI disabled
+; 0000 00EB SPCR=(0<<SPIE) | (0<<SPE) | (0<<DORD) | (0<<MSTR) | (0<<CPOL) | (0<<CPHA) | (0<<SPR1) | (0<<SPR0);
 ;PCODE: $0000010B VOL: 0
 ;PCODE: $0000010C VOL: 0
+; 0000 00EC 
+; 0000 00ED // TWI initialization
+; 0000 00EE // TWI disabled
+; 0000 00EF TWCR=(0<<TWEA) | (0<<TWSTA) | (0<<TWSTO) | (0<<TWEN) | (0<<TWIE);
+;PCODE: $0000010D VOL: 0
+;PCODE: $0000010E VOL: 0
+; 0000 00F0 
+; 0000 00F1 // Global enable interrupts
+; 0000 00F2 #asm("sei")
+;PCODE: $0000010F VOL: 0
+	sei
+;PCODE: $00000110 VOL: 0
+; 0000 00F3 
+; 0000 00F4 while (1)
+;PCODE: $00000111 VOL: 0
+; 0000 00F5     {
+; 0000 00F6     // Place your code here
+; 0000 00F7     switch(state)
+;PCODE: $00000112 VOL: 0
+; 0000 00F8     {
+; 0000 00F9     case RAISE_INTERRUPT:
+;PCODE: $00000113 VOL: 0
+;PCODE: $00000114 VOL: 0
+; 0000 00FA         PORTA.0 = 1;
+;PCODE: $00000115 VOL: 0
+;PCODE: $00000116 VOL: 0
+; 0000 00FB         state = WAIT_FOR_ACK;
+;PCODE: $00000117 VOL: 0
+;PCODE: $00000118 VOL: 0
+; 0000 00FC         break;
+;PCODE: $00000119 VOL: 0
+; 0000 00FD     }
+;PCODE: $0000011A VOL: 0
+; 0000 00FE     }
+;PCODE: $0000011B VOL: 0
+;PCODE: $0000011C VOL: 0
+; 0000 00FF }
+;PCODE: $0000011D VOL: 0
+;PCODE: $0000011E VOL: 0
+;PCODE: $0000011F VOL: 0

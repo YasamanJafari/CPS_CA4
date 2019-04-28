@@ -1,0 +1,43 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+temprature                                                                        R4,R5        2
+state                                                                             R6,R7        2
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+read_adc                                                                          0x00050     14
+init                                                                              0x0005E     13
+ext_int0_isr                                                                      0x0006B     63
+timer0_ovf_isr                                                                    0x000AA     48
+main                                                                              0x000DA     80
+putchar                                                                           0x0012A      7
+put_usart_G100                                                                    0x00131     13
+_print_G100                                                                       0x0013E    308
+printf                                                                            0x00272     37
+strlen                                                                            0x00297     12
+strlenf                                                                           0x002A3     13
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+read_adc                                                                          0x00050     14
+init                                                                              0x0005E     13
+ext_int0_isr                                                                      0x0006B     63
+timer0_ovf_isr                                                                    0x000AA     48
+main                                                                              0x000DA     80
+putchar                                                                           0x0012A      7
+put_usart_G100                                                                    0x00131     13
+_print_G100                                                                       0x0013E    308
+printf                                                                            0x00272     37
+strlen                                                                            0x00297     12
+strlenf                                                                           0x002A3     13

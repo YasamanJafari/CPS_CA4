@@ -27,7 +27,7 @@ Active0=0
 EditorPanel0=0
 PageIndex0=0
 EditorPanel1=0
-TimeStamp1=1318885568
+TimeStamp1=1318886305
 PageIndex1=1
 [CompilerDebug]
 Chip=ATmega32
@@ -126,9 +126,9 @@ DebugBootLoader=0
 WatchAVR8LAutoVariables=0
 UseEEPROMLocation0=1
 RebuildAll=0
-LinkageInformationPresent=0
-COFFileTimeStamp=-1
-Build=1
+LinkageInformationPresent=1
+COFFileTimeStamp=1318886306
+Build=2
 [DefinedSymbolsDebug]
 Count=0
 [Compiler]
@@ -230,7 +230,7 @@ UseEEPROMLocation0=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=1
+Build=2
 [DefinedSymbols]
 Count=0
 [StartUp]
@@ -310,9 +310,6 @@ PreserveEEPROM=0
 VerifyProgramming=1
 ProgrammingCounter=0
 RunUserProg=0
-[HeadersList]
-Files=1
-F1=\\Mac\Home\Desktop\Term6\CPS\A4\CPS_CA4\PeripheralBoard0\peripheralBoard.c
 [BuildInfoCompiler]
 L1=Build configuration: Debug
 L2=Chip: ATmega32
@@ -331,7 +328,7 @@ L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
 L17=Build: 1
-L18=9380 line(s) compiled
+L18=9394 line(s) compiled
 L19=No errors
 L20=No warnings
 L21=
@@ -339,7 +336,7 @@ L22=Bit variables size: 0 byte(s)
 L23=
 L24=Data Stack area: 0x60 to 0x25F
 L25=Data Stack size: 512 byte(s)
-L26=Estimated Data Stack usage: 0 byte(s)
+L26=Estimated Data Stack usage: 44 byte(s)
 L27=
 L28=RAM Global variables size: 0 byte(s)
 L29=
@@ -348,30 +345,37 @@ L31=Hardware Stack size: 1536 byte(s)
 L32=
 L33=Heap size: 0 byte(s)
 L34=
-Lines=34
+Lines=37
+L35=EEPROM usage: 0 byte(s), 0.0% of EEPROM
+L36=Program size: 779 words (1558 bytes), 4.8% of FLASH
+L37=39 words (78 bytes), 4.8% reduced by Code Compression
 [BuildInfoAssembler]
-Lines=0
-[Header1]
-Files=6
-F1=C:\cvavr\inc\mega32.h
-F2=C:\cvavr\inc\mega32_bits.h
-F3=C:\cvavr\inc\delay.h
-F4=C:\cvavr\inc\stdio.h
-F5=C:\cvavr\inc\io.h
-F6=C:\cvavr\inc\stdarg.h
+Lines=12
+L1=AVRASM: AVR macro assembler 2.1.30 (build 592 Nov  7 2008 12:38:17)
+L2=Copyright (C) 1995-2008 ATMEL Corporation
+L3=
+L4=\\Mac\Home\Desktop\CPS\CA4\CPS_CA4\PeripheralBoard0\Debug\List\peripheralBoard.asm(2311): No EEPROM data, deleting \\Mac\Home\Desktop\CPS\CA4\CPS_CA4\PeripheralBoard0\Debug\Exe\peripheralBoard.eep
+L5=
+L6=ATmega32 memory use summary [bytes]:
+L7=Segment   Begin    End      Code   Data   Used    Size   Use%
+L8=---------------------------------------------------------------
+L9=[.cseg] 0x000000 0x000616   1536     22   1558   32768   4.8%
+L10=[.dseg] 0x000060 0x000260      0      0      0    2048   0.0%
+L11=[.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
+L12=
 [Bookmarks0]
 Row=0
 Column=0
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1318885624
+TimeStamp=1318886310
 [BookmarksFoldedCode]
 Files=1
 F1=peripheralBoard.c
 [Bookmarks1]
-TimeStamp=1318885568
-Row=0
-Column=0
+TimeStamp=1318886305
+Row=29
+Column=19
 ScrollPosX=0
 ScrollPosY=0
 BK0=-1
@@ -384,5 +388,16 @@ BK6=-1
 BK7=-1
 BK8=-1
 BK9=-1
+[HeadersList]
+Files=1
+F1=\\Mac\Home\Desktop\CPS\CA4\CPS_CA4\PeripheralBoard0\peripheralBoard.c
+[Header1]
+Files=6
+F1=C:\cvavr\inc\mega32.h
+F2=C:\cvavr\inc\mega32_bits.h
+F3=C:\cvavr\inc\delay.h
+F4=C:\cvavr\inc\stdio.h
+F5=C:\cvavr\inc\io.h
+F6=C:\cvavr\inc\stdarg.h
 [FoldedCode1]
 Blocks=0

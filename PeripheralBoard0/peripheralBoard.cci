@@ -1,4 +1,4 @@
-VERSION:3 SOURCE_TIMESTAMP:4E9C98C0
+VERSION:3 SOURCE_TIMESTAMP:4E9C9BA1
 NODE:I LEVEL:0 LINE:24 "C:\cvavr\inc\mega32.h"
 NODE:I LEVEL:0 LINE:26 "C:\cvavr\inc\delay.h"
 NODE:M LEVEL:0 LINE:27 "CHECK_TEMP"
@@ -11,7 +11,8 @@ NODE:V LEVEL:0 LINE:34 "temprature -> R4,R5"
 NODE:V LEVEL:0 LINE:35 "state -> R6,R7"
 NODE:M LEVEL:0 LINE:37 "ADC_VREF_TYPE"
 NODE:F LEVEL:0 LINE:41 "read_adc(unsigned char adc_input)"
-NODE:F LEVEL:0 LINE:55 "ext_int0_isr(void)"
-NODE:I LEVEL:0 LINE:84 "C:\cvavr\inc\stdio.h"
-NODE:F LEVEL:0 LINE:87 "timer0_ovf_isr(void)"
-NODE:F LEVEL:0 LINE:102 "main(void)"
+NODE:F LEVEL:0 LINE:53 "init(void)"
+NODE:F LEVEL:0 LINE:65 "ext_int0_isr(void)"
+NODE:I LEVEL:0 LINE:96 "C:\cvavr\inc\stdio.h"
+NODE:F LEVEL:0 LINE:99 "timer0_ovf_isr(void)"
+NODE:F LEVEL:0 LINE:118 "main(void)"
