@@ -26,7 +26,7 @@ PLLVCO=2
 TriggerLevel=0
 InterruptEnabled=0
 [Ports]
-DDR0=4
+DDR0=2
 PORT0=0
 DDR1=12
 PORT1=0
@@ -81,15 +81,15 @@ INT7Mode=0
 PCMSK=0
 [Timer0]
 T0ClkSource=0
-T0Prescaler=0
+T0Prescaler=2
 T0Mode=0
 T0Output=0
 T0OutputB=0
-T0OverflowInt=0
+T0OverflowInt=1
 T0CaptureInt=0
 T0CompareInt=0
 T0CompareBInt=0
-T0Value=0
+T0Value=9C
 T0InpCaptureReg=0
 T0Compare=0
 T0CompareB=0

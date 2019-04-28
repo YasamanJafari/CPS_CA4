@@ -1,66 +1,54 @@
-/*******************************************************
-This program was created by the
-CodeWizardAVR V3.12 Advanced
-Automatic Program Generator
-� Copyright 1998-2014 Pavel Haiduc, HP InfoTech s.r.l.
-http://www.hpinfotech.com
-
-Project : CPS CA4
-Version :  0
-Date    : 4/27/2019 A.D.
-Author  :  Farzad, Yasaman, Sadaf
-Company :  CPS GROUP 3
-Comments: 
-
-
-Chip type               : ATmega32
-Program type            : Application
-AVR Core Clock frequency: 8.000000 MHz
-Memory model            : Small
-External RAM size       : 0
-Data Stack size         : 512
-*******************************************************/
-
 #include <mega32.h>
-#include <util/delay.h>
+
 #define WAIT_FOR_INTERRUPT 0x00
 #define INTERRUPT_RECEIVED 0x01
 #define WAIT_FOR_ADDRESS 0x02
 #define GET_DATA 0x03
 #define SHOW_DATA 0x04
 
-
-// Declare your global variables here
 unsigned char deviceAddress;
 unsigned char state;
 unsigned char muxSelect;
 unsigned char data;
 
-// External Interrupt 0 service routine
+
 interrupt [EXT_INT0] void ext_int0_isr(void)
 {
-// Place your code here
-state = INTERRUPT_RECEIVED;
-PORTA.2 = 1;
-state = WAIT_FOR_ADDRESS;
+    state = INTERRUPT_RECEIVED;
+    PORTD.0 = 1;
+    state = WAIT_FOR_ADDRESS;
+}
+
+interrupt [EXT_INT1] void ext_int1_isr(void)
+{
+    if(state == WAIT_FOR_ADDRESS)
+    { 
+        deviceAddress =  (1 << PINB.1) + PINB.0;
+        state = GET_DATA;
+    }
+}
+
+// Standard Input/Output functions
+#include <stdio.h>
+
+void init()
+{
+    state = WAIT_FOR_INTERRUPT;
+    deviceAddress = 0x00;
+    muxSelect = 0x00;
+    data = 0x00; 
 }
 
 void main(void)
 {
 // Declare your local variables here
-
-state = WAIT_FOR_INTERRUPT;
-deviceAddress = 0x00;
-muxSelect = 0x00;
-data = 0x00;
-
-    
+init();
 
 // Input/Output Ports initialization
 // Port A initialization
-// Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=Out Bit1=In Bit0=In 
-DDRA=(0<<DDA7) | (0<<DDA6) | (0<<DDA5) | (0<<DDA4) | (0<<DDA3) | (1<<DDA2) | (0<<DDA1) | (0<<DDA0);
-// State: Bit7=T Bit6=T Bit5=T Bit4=T Bit3=T Bit2=0 Bit1=T Bit0=T 
+// Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=In 
+DDRA=(0<<DDA7) | (0<<DDA6) | (0<<DDA5) | (0<<DDA4) | (0<<DDA3) | (0<<DDA2) | (0<<DDA1) | (0<<DDA0);
+// State: Bit7=T Bit6=T Bit5=T Bit4=T Bit3=T Bit2=T Bit1=T Bit0=T 
 PORTA=(0<<PORTA7) | (0<<PORTA6) | (0<<PORTA5) | (0<<PORTA4) | (0<<PORTA3) | (0<<PORTA2) | (0<<PORTA1) | (0<<PORTA0);
 
 // Port B initialization
@@ -76,9 +64,9 @@ DDRC=(0<<DDC7) | (0<<DDC6) | (0<<DDC5) | (0<<DDC4) | (0<<DDC3) | (0<<DDC2) | (0<
 PORTC=(0<<PORTC7) | (0<<PORTC6) | (0<<PORTC5) | (0<<PORTC4) | (0<<PORTC3) | (0<<PORTC2) | (0<<PORTC1) | (0<<PORTC0);
 
 // Port D initialization
-// Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=In 
-DDRD=(0<<DDD7) | (0<<DDD6) | (0<<DDD5) | (0<<DDD4) | (0<<DDD3) | (0<<DDD2) | (0<<DDD1) | (0<<DDD0);
-// State: Bit7=T Bit6=T Bit5=T Bit4=T Bit3=T Bit2=T Bit1=T Bit0=T 
+// Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=Out 
+DDRD=(0<<DDD7) | (0<<DDD6) | (0<<DDD5) | (0<<DDD4) | (0<<DDD3) | (0<<DDD2) | (0<<DDD1) | (1<<DDD0);
+// State: Bit7=T Bit6=T Bit5=T Bit4=T Bit3=T Bit2=T Bit1=T Bit0=0 
 PORTD=(0<<PORTD7) | (0<<PORTD6) | (0<<PORTD5) | (0<<PORTD4) | (0<<PORTD3) | (0<<PORTD2) | (0<<PORTD1) | (0<<PORTD0);
 
 // Timer/Counter 0 initialization
@@ -129,16 +117,25 @@ TIMSK=(0<<OCIE2) | (0<<TOIE2) | (0<<TICIE1) | (0<<OCIE1A) | (0<<OCIE1B) | (0<<TO
 // External Interrupt(s) initialization
 // INT0: On
 // INT0 Mode: Rising Edge
-// INT1: Off
+// INT1: On
+// INT1 Mode: Rising Edge
 // INT2: Off
-GICR|=(0<<INT1) | (1<<INT0) | (0<<INT2);
-MCUCR=(0<<ISC11) | (0<<ISC10) | (1<<ISC01) | (1<<ISC00);
+GICR|=(1<<INT1) | (1<<INT0) | (0<<INT2);
+MCUCR=(1<<ISC11) | (1<<ISC10) | (1<<ISC01) | (1<<ISC00);
 MCUCSR=(0<<ISC2);
-GIFR=(0<<INTF1) | (1<<INTF0) | (0<<INTF2);
+GIFR=(1<<INTF1) | (1<<INTF0) | (0<<INTF2);
 
 // USART initialization
-// USART disabled
-UCSRB=(0<<RXCIE) | (0<<TXCIE) | (0<<UDRIE) | (0<<RXEN) | (0<<TXEN) | (0<<UCSZ2) | (0<<RXB8) | (0<<TXB8);
+// Communication Parameters: 8 Data, 1 Stop, No Parity
+// USART Receiver: Off
+// USART Transmitter: On
+// USART Mode: Asynchronous
+// USART Baud Rate: 9600
+UCSRA=(0<<RXC) | (0<<TXC) | (0<<UDRE) | (0<<FE) | (0<<DOR) | (0<<UPE) | (0<<U2X) | (0<<MPCM);
+UCSRB=(0<<RXCIE) | (0<<TXCIE) | (0<<UDRIE) | (0<<RXEN) | (1<<TXEN) | (0<<UCSZ2) | (0<<RXB8) | (0<<TXB8);
+UCSRC=(1<<URSEL) | (0<<UMSEL) | (0<<UPM1) | (0<<UPM0) | (0<<USBS) | (1<<UCSZ1) | (1<<UCSZ0) | (0<<UCPOL);
+UBRRH=0x00;
+UBRRL=0x33;
 
 // Analog Comparator initialization
 // Analog Comparator: Off
@@ -165,16 +162,8 @@ TWCR=(0<<TWEA) | (0<<TWSTA) | (0<<TWSTO) | (0<<TWEN) | (0<<TWIE);
 #asm("sei")
 
 while (1)
-    {
-    // Place your code here
-    //TODO: PINB.0 and PINB.1 address should checked.
-        if(state == WAIT_FOR_ADDRESS)
-        { 
-            _delay_ms(1);
-            deviceAddress =  (1 << PINB.1) + PINB.0;
-            state = GET_DATA;
-        }
-        else if(state == GET_DATA)
+      {
+       if(state == GET_DATA)
         {
             muxSelect = deviceAddress;
             PORTB.3 = muxSelect & 1;
@@ -185,10 +174,10 @@ while (1)
         }
         else if(state == SHOW_DATA)
         {
-            //showing data 
+            //showing data
+            printf("data is %d \n", data);
+            init();
         }
 
-    }
-     
+      }
 }
-
