@@ -176,10 +176,7 @@ while (1)
         {
             //showing data
             printf("data is %d \n", data);
-            state = WAIT_FOR_INTERRUPT;
-            deviceAddress = 0x00;
-            muxSelect = 0x00;
-            data = 0x00; 
+            init();
         }
 
       }
