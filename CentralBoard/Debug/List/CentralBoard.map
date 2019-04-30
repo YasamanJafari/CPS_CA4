@@ -9,21 +9,22 @@ Variable                                                                        
 Register Allocation
 Variable                                                                          Register  Size
 ------------------------------------------------------------------------------------------------
-deviceAddress                                                                     R5           1
-state                                                                             R4           1
-muxSelect                                                                         R7           1
-data                                                                              R6           1
+deviceAddress_0                                                                   R5           1
+deviceAddress_1                                                                   R4           1
+state                                                                             R7           1
+muxSelect                                                                         R6           1
+data                                                                              R9           1
 
 FLASH Allocation [words]
 Function                                                                          Address   Size
 ------------------------------------------------------------------------------------------------
-ext_int0_isr                                                                      0x00055      8
-ext_int1_isr                                                                      0x0005D     28
-init                                                                              0x00079      5
-main                                                                              0x0007E     99
-putchar                                                                           0x000E1      7
-put_usart_G100                                                                    0x000E8     13
-_print_G100                                                                       0x000F5    308
-printf                                                                            0x00229     37
-strlen                                                                            0x0024E     12
-strlenf                                                                           0x0025A     13
+init                                                                              0x00055      9
+ext_int0_isr                                                                      0x0005E     33
+ext_int1_isr                                                                      0x0007F     21
+main                                                                              0x00094     98
+putchar                                                                           0x000F6      7
+put_usart_G100                                                                    0x000FD     13
+_print_G100                                                                       0x0010A    308
+printf                                                                            0x0023E     37
+strlen                                                                            0x00263     12
+strlenf                                                                           0x0026F     13

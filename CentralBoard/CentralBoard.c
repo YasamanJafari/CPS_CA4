@@ -6,14 +6,27 @@
 #define GET_DATA 0x03
 #define SHOW_DATA 0x04
 
-unsigned char deviceAddress;
+unsigned char deviceAddress_0;
+unsigned char deviceAddress_1;
 unsigned char state;
 unsigned char muxSelect;
 unsigned char data;
 
+void init()
+{
+    PORTD.0 = 0;
+    PORTB.2 = 0;
+    PORTB.3 = 0;
+    state = WAIT_FOR_INTERRUPT;
+    deviceAddress_0 = 0;
+    deviceAddress_1  = 0;
+    muxSelect = 0x00;
+    data = 0x00; 
+}
 
 interrupt [EXT_INT0] void ext_int0_isr(void)
 {
+    init();
     state = INTERRUPT_RECEIVED;
     PORTD.0 = 1;
     state = WAIT_FOR_ADDRESS;
@@ -22,8 +35,10 @@ interrupt [EXT_INT0] void ext_int0_isr(void)
 interrupt [EXT_INT1] void ext_int1_isr(void)
 {
     if(state == WAIT_FOR_ADDRESS)
-    { 
-        deviceAddress =  (1 << PINB.1) + PINB.0;
+    {
+        PORTD.0 = 1; 
+        deviceAddress_0 = PINB.0;
+        deviceAddress_1 = PINB.1;
         state = GET_DATA;
     }
 }
@@ -31,16 +46,6 @@ interrupt [EXT_INT1] void ext_int1_isr(void)
 // Standard Input/Output functions
 #include <stdio.h>
 
-void init()
-{
-    PORTD.0 = 0;
-    PORTB.2 = 0;
-    PORTB.3 = 0;
-    state = WAIT_FOR_INTERRUPT;
-    deviceAddress = 0x00;
-    muxSelect = 0x00;
-    data = 0x00; 
-}
 
 void main(void)
 {
@@ -168,9 +173,8 @@ while (1)
       {
        if(state == GET_DATA)
         {
-            muxSelect = deviceAddress;
-            PORTB.3 = muxSelect & 1;
-            PORTB.2 = (muxSelect >> 1) & 1;
+            PORTB.3 = deviceAddress_1;
+            PORTB.2 = deviceAddress_0;
             //read data from mux
             data = PINC;
             state = SHOW_DATA;
