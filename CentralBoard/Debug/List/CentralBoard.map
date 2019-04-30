@@ -18,13 +18,13 @@ data                                                                            
 FLASH Allocation [words]
 Function                                                                          Address   Size
 ------------------------------------------------------------------------------------------------
-init                                                                              0x00055      9
-ext_int0_isr                                                                      0x0005E     33
-ext_int1_isr                                                                      0x0007F     21
-main                                                                              0x00094     98
-putchar                                                                           0x000F6      7
-put_usart_G100                                                                    0x000FD     13
-_print_G100                                                                       0x0010A    308
-printf                                                                            0x0023E     37
-strlen                                                                            0x00263     12
-strlenf                                                                           0x0026F     13
+init                                                                              0x0005C      9
+ext_int0_isr                                                                      0x00065     33
+ext_int1_isr                                                                      0x00086     21
+main                                                                              0x0009B    117
+putchar                                                                           0x00110      7
+put_usart_G100                                                                    0x00117     13
+_print_G100                                                                       0x00124    308
+printf                                                                            0x00258     37
+strlen                                                                            0x0027D     12
+strlenf                                                                           0x00289     13

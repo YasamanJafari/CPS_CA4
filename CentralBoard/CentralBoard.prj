@@ -127,8 +127,8 @@ WatchAVR8LAutoVariables=0
 UseEEPROMLocation0=1
 RebuildAll=0
 LinkageInformationPresent=1
-COFFileTimeStamp=1319013244
-Build=10
+COFFileTimeStamp=1319014116
+Build=13
 [DefinedSymbolsDebug]
 Count=0
 [Compiler]
@@ -230,7 +230,7 @@ UseEEPROMLocation0=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=10
+Build=13
 [DefinedSymbols]
 Count=0
 [StartUp]
@@ -327,8 +327,8 @@ L13=Enhanced function parameters passing: Yes
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 10
-L18=9315 line(s) compiled
+L17=Build: 13
+L18=9317 line(s) compiled
 L19=No errors
 L20=No warnings
 L21=
@@ -346,19 +346,19 @@ L32=
 L33=Heap size: 0 byte(s)
 L34=
 L35=EEPROM usage: 0 byte(s), 0.0% of EEPROM
-L36=Program size: 708 words (1416 bytes), 4.3% of FLASH
-L37=31 words (62 bytes), 4.2% reduced by Code Compression
+L36=Program size: 739 words (1478 bytes), 4.5% of FLASH
+L37=31 words (62 bytes), 4.0% reduced by Code Compression
 Lines=37
 [BuildInfoAssembler]
 L1=AVRASM: AVR macro assembler 2.1.30 (build 592 Nov  7 2008 12:38:17)
 L2=Copyright (C) 1995-2008 ATMEL Corporation
 L3=
-L4=\\Mac\Home\Desktop\CPS\CA4\CPS_CA4\CentralBoard\Debug\List\CentralBoard.asm(2153): No EEPROM data, deleting \\Mac\Home\Desktop\CPS\CA4\CPS_CA4\CentralBoard\Debug\Exe\CentralBoard.eep
+L4=\\Mac\Home\Desktop\CPS\CA4\CPS_CA4\CentralBoard\Debug\List\CentralBoard.asm(2181): No EEPROM data, deleting \\Mac\Home\Desktop\CPS\CA4\CPS_CA4\CentralBoard\Debug\Exe\CentralBoard.eep
 L5=
 L6=ATmega32 memory use summary [bytes]:
 L7=Segment   Begin    End      Code   Data   Used    Size   Use%
 L8=---------------------------------------------------------------
-L9=[.cseg] 0x000000 0x000588   1384     32   1416   32768   4.3%
+L9=[.cseg] 0x000000 0x0005c6   1432     46   1478   32768   4.5%
 L10=[.dseg] 0x000060 0x000260      0      0      0    2048   0.0%
 L11=[.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 L12=

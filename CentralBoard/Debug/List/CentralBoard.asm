@@ -1128,7 +1128,9 @@ _tbl16_G100:
 
 _0x0:
 	.DB  0x64,0x61,0x74,0x61,0x20,0x69,0x73,0x20
-	.DB  0x25,0x64,0x20,0xA,0x0
+	.DB  0x25,0x64,0x20,0x66,0x6F,0x72,0x20,0x64
+	.DB  0x65,0x76,0x69,0x63,0x65,0x20,0x25,0x64
+	.DB  0x20,0xA,0xA,0x0
 __RESET:
 	CLI
 	CLR  R30
@@ -1323,12 +1325,13 @@ _main:
 ; 0000 0036 
 ; 0000 0037 // Input/Output Ports initialization
 ; 0000 0038 // Port A initialization
-; 0000 0039 // Function: Bit7=In Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=In
-; 0000 003A DDRA=(0<<DDA7) | (0<<DDA6) | (0<<DDA5) | (0<<DDA4) | (0<<DDA3) | (0<<DDA2) | (0<<DDA1) | (0<<DDA0);
-	LDI  R30,LOW(0)
+; 0000 0039 // Function: Bit7=Out Bit6=Out Bit5=Out Bit4=Out Bit3=Out Bit2=Out Bit1=Out Bit0=Out
+; 0000 003A DDRA=(1<<DDA7) | (1<<DDA6) | (1<<DDA5) | (1<<DDA4) | (1<<DDA3) | (1<<DDA2) | (1<<DDA1) | (1<<DDA0);
+	LDI  R30,LOW(255)
 	OUT  0x1A,R30
-; 0000 003B // State: Bit7=T Bit6=T Bit5=T Bit4=T Bit3=T Bit2=T Bit1=T Bit0=T
+; 0000 003B // State: Bit7=0 Bit6=0 Bit5=0 Bit4=0 Bit3=0 Bit2=0 Bit1=0 Bit0=0
 ; 0000 003C PORTA=(0<<PORTA7) | (0<<PORTA6) | (0<<PORTA5) | (0<<PORTA4) | (0<<PORTA3) | (0<<PORTA2) | (0<<PORTA1) | (0<<PORTA0);
+	LDI  R30,LOW(0)
 	OUT  0x1B,R30
 ; 0000 003D 
 ; 0000 003E // Port B initialization
@@ -1537,7 +1540,7 @@ _0x11:
 	BRNE _0x17
 ; 0000 00B7         {
 ; 0000 00B8             //showing data
-; 0000 00B9             printf("data is %d \n", data);
+; 0000 00B9             printf("data is %d for device %d \n\n", data, deviceAddress_0 * 2 + deviceAddress_1 );
 	__POINTW1FN _0x0,0
 	ST   -Y,R31
 	ST   -Y,R30
@@ -1546,18 +1549,36 @@ _0x11:
 	CLR  R22
 	CLR  R23
 	CALL __PUTPARD1
-	LDI  R24,4
+	MOV  R26,R5
+	LDI  R30,LOW(2)
+	MUL  R30,R26
+	MOVW R30,R0
+	MOVW R26,R30
+	MOV  R30,R4
+	LDI  R31,0
+	ADD  R30,R26
+	ADC  R31,R27
+	CALL __CWD1
+	CALL __PUTPARD1
+	LDI  R24,8
 	CALL _printf
-	ADIW R28,6
-; 0000 00BA             init();
+	ADIW R28,10
+; 0000 00BA             PORTA = data;
+	OUT  0x1B,R9
+; 0000 00BB             PORTA = deviceAddress_0 * 2 + deviceAddress_1;
+	MOV  R30,R5
+	LSL  R30
+	ADD  R30,R4
+	OUT  0x1B,R30
+; 0000 00BC             init();
 	RCALL _init
-; 0000 00BB         }
-; 0000 00BC 
-; 0000 00BD       }
+; 0000 00BD         }
+; 0000 00BE 
+; 0000 00BF       }
 _0x17:
 _0x16:
 	RJMP _0xE
-; 0000 00BE }
+; 0000 00C0 }
 _0x18:
 	RJMP _0x18
 ; .FEND
@@ -2101,6 +2122,13 @@ __ANEGW1:
 	NEG  R31
 	NEG  R30
 	SBCI R31,0
+	RET
+
+__CWD1:
+	MOV  R22,R31
+	ADD  R22,R22
+	SBC  R22,R22
+	MOV  R23,R22
 	RET
 
 __GETW1P:
